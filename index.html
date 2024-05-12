@@ -50,7 +50,7 @@
 </head>
 <body>
     <div class="tabs">
-        <div class="tab" onclick="showContent('us')">Мы</div>
+        <div class="tab active" onclick="showContent('us')">Мы</div>
         <div class="tab" onclick="showContent('our-history')">Наша история</div>
     </div>
     <div class="container">
@@ -58,12 +58,19 @@
             <h1>Котик, этот мини сайт для тебя</h1>
         </header>
         <section class="section" id="us">
+            <h2>Моя любимая зайка</h2>
+            <p>Моя зайка - это моя драгоценность, моя радость и мое счастье. Мы вместе уже 500 дней (полвека))) и каждый день наполняем нашу жизнь любовью и взаимопониманием.</p>
+            <h2>Наша жизнь вместе</h2>
+            <p>Наша жизнь вместе - это непередаваемые моменты счастья, веселья и любви. Мы переживаем вместе радости и горести, поддерживаем друг друга и радуемся каждому дню, проведенному вместе.</p>
             <h2>О нас</h2>
-            <p>Здесь вы найдете информацию о нас...</p>
+            <p>Я безумно люблю мою малышку и не представляю свою жизнь без нее. Моя зайка - это мое все, и я готов сделать все возможное, чтобы сделать ее счастливой.</p>
         </section>
         <section class="section" id="our-history" style="display: none;">
             <h2>Наша история</h2>
-            <p>Здесь будет наша история...</p>
+            <p>1 пункт. 03.10.2022 - Наше знакомство</p>
+            <p>2 пункт. 30.12.2022 - Начало вечной истории</p>
+            <p>3 пункт. 1.03.2023 - Помолвка</p>
+            <p id="time-counter"></p>
         </section>
     </div>
 
@@ -86,7 +93,45 @@
 
             // Добавляем класс активной вкладки к выбранной
             document.querySelector('.tab[data-tab="' + tabName + '"]').classList.add('active');
+
+            // Если выбрана вкладка "Наша история", запускаем отсчет времени
+            if (tabName === 'our-history') {
+                startTimer();
+            } else {
+                clearInterval(timerInterval);
+            }
         }
+
+        // Устанавливаем дату начала "вечной истории"
+        const startDate = new Date('December 30, 2022 00:00:00');
+
+        // Функция для обновления счетчика времени
+        function updateCounter() {
+            // Текущая дата
+            const currentDate = new Date();
+
+            // Вычисляем разницу между текущей датой и начальной датой в секундах
+            const difference = (currentDate - startDate) / 1000;
+
+            // Преобразуем разницу в дни, часы, минуты и секунды
+            const days = Math.floor(difference / (3600 * 24));
+            const hours = Math.floor((difference % (3600 * 24)) / 3600);
+            const minutes = Math.floor((difference % 3600) / 60);
+            const seconds = Math.floor(difference % 60);
+
+            // Выводим результат на страницу
+            document.getElementById('time-counter').textContent = `Мы вместе уже ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+        }
+
+        // Функция для запуска отсчета времени
+        function startTimer() {
+            // Вызываем функцию обновления счетчика каждую секунду
+            updateCounter();
+            timerInterval = setInterval(updateCounter, 1000);
+        }
+
+        // Вызываем функцию отображения вкладки "Мы" по умолчанию
+        showContent('us');
     </script>
 </body>
 </html>
