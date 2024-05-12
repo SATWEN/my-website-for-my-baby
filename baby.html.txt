@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Личная Веб-Страница</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #8A2BE2, #FFFFFF);
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #8A2BE2;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #8A2BE2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Моя Личная Веб-Страница</h1>
+        </header>
+        <section class="section">
+            <h2>Моя любимая зайка</h2>
+            <p>Моя зайка - это моя драгоценность, моя радость и мое счастье. Мы вместе уже [сколько] и каждый день наполняем нашу жизнь любовью и взаимопониманием.</p>
+        </section>
+        <section class="section">
+            <h2>Наша жизнь вместе</h2>
+            <p>Наша жизнь вместе - это непередаваемые моменты счастья, веселья и любви. Мы переживаем вместе радости и горести, поддерживаем друг друга и радуемся каждому дню, проведенному вместе.</p>
+        </section>
+        <section class="section">
+            <h2>О себе</h2>
+            <p>Я безумно люблю мою малышку и не представляю свою жизнь без нее. Моя зайка - это мое все, и я готов сделать все возможное, чтобы сделать ее счастливой.</p>
+        </section>
+    </div>
+</body>
+</html>
