@@ -29,91 +29,64 @@
         .section h2 {
             color: #8A2BE2;
         }
-        /* Added styles for the navigation tab */
-        nav {
+        /* Added styles for the navigation tabs */
+        .tabs {
             text-align: center;
             margin-bottom: 20px;
         }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
+        .tab {
+            display: inline-block;
             margin-right: 20px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
         }
-        nav ul li a {
-            text-decoration: none;
-            color: #8A2BE2;
-            font-weight: bold;
+        .tab.active {
+            background-color: #8A2BE2;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#our-history">Наша история</a></li>
-        </ul>
-    </nav>
+    <div class="tabs">
+        <div class="tab" onclick="showContent('us')">Мы</div>
+        <div class="tab" onclick="showContent('our-history')">Наша история</div>
+    </div>
     <div class="container">
         <header>
             <h1>Котик, этот мини сайт для тебя</h1>
         </header>
-        <!-- Added id attribute for easier navigation -->
-        <section class="section" id="our-history">
-            <h2>Наша история</h2>
-            <p id="time-counter"></p>
-            <ol>
-                <li>03.10.2022 - Наше знакомство</li>
-                <li>30.12.2022 - Начало вечной истории</li>
-                <li>1.03.2023 - Помолвка</li>
-            </ol>
-        </section>
-        <section class="section">
-            <h2>Моя любимая зайка</h2>
-            <p>Моя зайка - это моя драгоценность, моя радость и мое счастье. Мы вместе уже 500 дней (полвека))) и каждый день наполняем нашу жизнь любовью и взаимопониманием.</p>
-        </section>
-        <section class="section">
-            <h2>Наша жизнь вместе</h2>
-            <p>Наша жизнь вместе - это непередаваемые моменты счастья, веселья и любви. Мы переживаем вместе радости и горести, поддерживаем друг друга и радуемся каждому дню, проведенному вместе.</p>
-        </section>
-        <section class="section">
+        <section class="section" id="us">
             <h2>О нас</h2>
-            <p>Я безумно люблю мою малышку и не представляю свою жизнь без нее. Моя зайка - это мое все, и я готов сделать все возможное, чтобы сделать ее счастливой.</p>
+            <p>Здесь вы найдете информацию о нас...</p>
+        </section>
+        <section class="section" id="our-history" style="display: none;">
+            <h2>Наша история</h2>
+            <p>Здесь будет наша история...</p>
         </section>
     </div>
 
     <script>
-        // Получаем элемент, куда будет выводиться счетчик
-        const timeCounter = document.getElementById('time-counter');
+        function showContent(tabName) {
+            // Получаем все вкладки и скрываем их
+            var tabs = document.querySelectorAll('.section');
+            tabs.forEach(function(tab) {
+                tab.style.display = 'none';
+            });
 
-        // Устанавливаем дату начала "вечной истории"
-        const startDate = new Date('December 30, 2022 00:00:00');
+            // Показываем выбранную вкладку
+            document.getElementById(tabName).style.display = 'block';
 
-        // Функция для обновления счетчика времени
-        function updateCounter() {
-            // Текущая дата
-            const currentDate = new Date();
+            // Убираем класс активной вкладки у всех вкладок
+            var tabButtons = document.querySelectorAll('.tab');
+            tabButtons.forEach(function(button) {
+                button.classList.remove('active');
+            });
 
-            // Вычисляем разницу между текущей датой и начальной датой в секундах
-            const difference = (currentDate - startDate) / 1000;
-
-            // Преобразуем разницу в дни, часы, минуты и секунды
-            const days = Math.floor(difference / (3600 * 24));
-            const hours = Math.floor((difference % (3600 * 24)) / 3600);
-            const minutes = Math.floor((difference % 3600) / 60);
-            const seconds = Math.floor(difference % 60);
-
-            // Выводим результат на страницу
-            timeCounter.textContent = `Мы вместе уже ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+            // Добавляем класс активной вкладки к выбранной
+            document.querySelector('.tab[data-tab="' + tabName + '"]').classList.add('active');
         }
-
-        // Вызываем функцию обновления счетчика каждую секунду
-        setInterval(updateCounter, 1000);
-
-        // Также вызываем функцию один раз сразу после загрузки страницы,
-        // чтобы избежать задержки в начале отображения счетчика
-        updateCounter();
     </script>
 </body>
 </html>
