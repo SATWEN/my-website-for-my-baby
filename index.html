@@ -62,6 +62,7 @@
         <!-- Added id attribute for easier navigation -->
         <section class="section" id="our-history">
             <h2>Наша история</h2>
+            <p id="time-counter"></p>
             <ol>
                 <li>03.10.2022 - Наше знакомство</li>
                 <li>30.12.2022 - Начало вечной истории</li>
@@ -81,6 +82,38 @@
             <p>Я безумно люблю мою малышку и не представляю свою жизнь без нее. Моя зайка - это мое все, и я готов сделать все возможное, чтобы сделать ее счастливой.</p>
         </section>
     </div>
+
+    <script>
+        // Получаем элемент, куда будет выводиться счетчик
+        const timeCounter = document.getElementById('time-counter');
+
+        // Устанавливаем дату начала "вечной истории"
+        const startDate = new Date('December 30, 2022 00:00:00');
+
+        // Функция для обновления счетчика времени
+        function updateCounter() {
+            // Текущая дата
+            const currentDate = new Date();
+
+            // Вычисляем разницу между текущей датой и начальной датой в секундах
+            const difference = (currentDate - startDate) / 1000;
+
+            // Преобразуем разницу в дни, часы, минуты и секунды
+            const days = Math.floor(difference / (3600 * 24));
+            const hours = Math.floor((difference % (3600 * 24)) / 3600);
+            const minutes = Math.floor((difference % 3600) / 60);
+            const seconds = Math.floor(difference % 60);
+
+            // Выводим результат на страницу
+            timeCounter.textContent = `Мы вместе уже ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд`;
+        }
+
+        // Вызываем функцию обновления счетчика каждую секунду
+        setInterval(updateCounter, 1000);
+
+        // Также вызываем функцию один раз сразу после загрузки страницы,
+        // чтобы избежать задержки в начале отображения счетчика
+        updateCounter();
+    </script>
 </body>
 </html>
-
